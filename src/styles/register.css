@@ -1,0 +1,20 @@
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-page-div {
+  min-width: 20rem;
+}
+
+.register-page-input {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.register-page-input label {
+    font-size: 1.25rem;
+}

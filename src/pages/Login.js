@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import "../styles/login.css";
+import "../styles/auth.css";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
   return (
-    <div className="login-page">
-      <div className="login-page-div">
-        <div className="login-page-input">
+    <div className="auth-page">
+      <div className="auth-page-div">
+        <div className="auth-page-input">
           <label>Username</label>
           <input
             type="text"
@@ -17,7 +17,7 @@ const Login = () => {
             value={userName}
           />
         </div>
-        <div className="login-page-input">
+        <div className="auth-page-input">
           <label>Password</label>
           <input
             type="password"
@@ -26,7 +26,7 @@ const Login = () => {
             value={password}
           />
         </div>
-        <div className="login-page-button">
+        <div className="auth-page-button">
           <button
             onClick={() =>
               console.log("USERNAME, PASSWORD", userName, password)
