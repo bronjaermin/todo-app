@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../styles/register.css";
 import axios from "axios";
+import { MyContext } from "../context/my-context";
 
 const Registration = () => {
   const [firstName, setFirstName] = useState("");
@@ -15,7 +16,10 @@ const Registration = () => {
   const [userNameMessage, setUserNameMessage] = useState(null);
   const [password, setPassword] = useState("");
   const [passwordMessage, setPasswordMessage] = useState(null);
+  const {user} = useContext(MyContext)
   //let textRegex = /^[A-Za-z0-9]$/;
+
+  console.log("USERRRRRRRRRRRR", user)
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();

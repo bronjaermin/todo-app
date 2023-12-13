@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import HomeCard from "../components/home/HomeCard";
 import { MyContext } from "../context/my-context";
 import useMyCustomHook from '../hooks/my-custom-hook'
+import axios from "axios";
 
 const Home = () => {
   const [myTodos, setMyTodos] = useState([
@@ -12,27 +13,22 @@ const Home = () => {
     { id: 5, content: "4444444" },
     { id: 6, content: "5555555" },
   ])
-  const [counter, setCounter] = useState(0)
   const [myInput, setMyInput] = useState('')
   const programiranje = useContext(MyContext)
-  const mojHuk = useMyCustomHook()
-
-  useEffect(() => {
-  }, [counter])
 
   const myChildToParentFunction = (name, lastName, age) => {
     console.log(name, lastName, age);
   };
 
-  const onIncrementCounter = () => {
-    setCounter(oldValue => oldValue + 1);
+  const getAllTodosHandler = async () => {
+    try {
+      const response = await axios.get("https://localhost:7137/api/Todos");
+      console.log("RESPONSE", response.data)
+    } catch(e) {
+      console.log("Error", e)
+    }
+    
   }
-
-  const onDecrementCounter = () => {
-    setCounter(oldValue => oldValue - 1);
-  }
-
-  console.log("Moje ime je", programiranje.firstName)
   
   return (
     <div className="content">
@@ -46,9 +42,7 @@ const Home = () => {
         </div>
       </div>
 
-      <button onClick={mojHuk.increment}>Increment</button>
-      <h1>COUNTER: {mojHuk.counter}</h1>
-      <button onClick={mojHuk.decrement}>Decrement</button>
+      <button onClick={getAllTodosHandler}>GET ALL TODOS</button>
 
       {myTodos.map((myTodo) => (
         <HomeCard
