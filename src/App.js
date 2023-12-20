@@ -8,6 +8,7 @@ import MyNavigation from "./components/Shared/MyNavigation";
 import { useContext, useEffect } from "react";
 import { MyContext } from "./context/my-context";
 import axios from "axios";
+import EditTodoPage from "./pages/EditTodoPage";
 
 function App() {
   const { setUserFunction } = useContext(MyContext);
@@ -31,6 +32,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
+        <Route path="/todos/:id" element={<EditTodoPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>

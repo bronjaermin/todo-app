@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import "../styles/register.css";
 import axios from "axios";
 import { MyContext } from "../context/my-context";
+import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
   const [firstName, setFirstName] = useState("");
@@ -16,10 +17,9 @@ const Registration = () => {
   const [userNameMessage, setUserNameMessage] = useState(null);
   const [password, setPassword] = useState("");
   const [passwordMessage, setPasswordMessage] = useState(null);
-  const {user} = useContext(MyContext)
+  const { setUserFunction } = useContext(MyContext);
+  const navigate = useNavigate()
   //let textRegex = /^[A-Za-z0-9]$/;
-
-  console.log("USERRRRRRRRRRRR", user)
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -62,12 +62,39 @@ const Registration = () => {
     }
 
     try {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/todos/2')
-      console.log(response.data)
-    } catch(e) {
-      console.log("ERROR", e)
+      const response = await axios.post(
+        "https://localhost:7137/api/Users/register",
+        {
+          firstName,
+          lastName,
+          address,
+          age,
+          userName,
+          password,
+        }
+      );
+
+      const responseData = response.data;
+
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${responseData.token}`;
+
+      setUserFunction(responseData);
+
+      setFirstName('');
+      setLastName('');
+      setAddress('');
+      setAge(0);
+      setUserName('');
+      setPassword('');
+
+      localStorage.setItem('user', JSON.stringify(responseData))
+
+      navigate('/home')
+    } catch (e) {
+      console.log("Error", e);
     }
-    console.log(firstName, lastName, address, age, userName, password);
   };
 
   return (

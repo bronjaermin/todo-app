@@ -1,0 +1,42 @@
+.edit-todo {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -51px;
+}
+
+.edit-page-input {
+  margin-bottom: 1.5rem;
+}
+
+.edit-page-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-page-input label {
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.edit-page-input textarea {
+  padding: 0.5rem;
+  border: 2px solid #ccc;
+  outline: none;
+  border-radius: 6px;
+  resize: vertical;
+}
+
+.edit-page-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: rgb(43, 43, 43);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+  margin-top: 1rem;
+}
